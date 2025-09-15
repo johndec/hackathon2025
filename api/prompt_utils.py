@@ -33,8 +33,8 @@ def load_system_prompt(fallback: str | None = None) -> str | None:
         except FileNotFoundError:
             # File pointer set but missing; fall back to env var below
             pass
-        except Exception:
-            # If any other I/O error occurs, fall back to env var below
+        except (PermissionError, IsADirectoryError, UnicodeDecodeError):
+            # If any other expected I/O error occurs, fall back to env var below
             pass
 
     # 2) Try inline env var (may contain "\n" escapes)
