@@ -100,7 +100,8 @@ def repl_loop(client, system_prompt, max_tokens, temperature):
                 continue
             ai_text = resp.choices[0].message.content
             if ai_text is None:
-                print("Warning: Received empty response from assistant; not adding to conversation history.\n", file=sys.stderr)
+                print("Warning: Received empty response from assistant; adding empty assistant message to conversation history.\n", file=sys.stderr)
+                messages.append({"role": "assistant", "content": ""})
             else:
                 print(f"AI> {ai_text}\n")
                 # append assistant reply to conversation so context is preserved
