@@ -1,0 +1,27 @@
+# Azure AI RAG System Dependencies
+
+# Azure SDK packages
+azure-search-documents>=11.4.0
+azure-identity>=1.15.0
+azure-keyvault-secrets>=4.7.0
+azure-core>=1.29.0
+azure-storage-blob>=12.19.0
+
+# OpenAI SDK
+openai>=1.0.0
+
+# Additional dependencies
+requests>=2.31.0
+python-dotenv>=1.0.0
+
+# Optional dependencies for document processing
+pypdf2>=3.0.0  # For PDF processing
+python-docx>=0.8.11  # For Word documents
+beautifulsoup4>=4.12.0  # For HTML processing
+lxml>=4.9.0  # For XML/HTML parsing
+
+# Development and testing (optional)
+pytest>=7.4.0
+pytest-asyncio>=0.21.0
+black>=23.0.0
+flake8>=6.0.0

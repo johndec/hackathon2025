@@ -1,0 +1,28 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "projectName": {
+      "value": "airag"
+    },
+    "location": {
+      "value": "eastus"
+    },
+    "openAiSku": {
+      "value": "S0"
+    },
+    "searchSku": {
+      "value": "basic"
+    },
+    "storageSku": {
+      "value": "Standard_LRS"
+    },
+    "tags": {
+      "value": {
+        "project": "hackathon2025",
+        "purpose": "ai-rag",
+        "environment": "dev"
+      }
+    }
+  }
+}
