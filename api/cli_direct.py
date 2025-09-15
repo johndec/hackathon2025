@@ -52,8 +52,8 @@ def single_request(client, user_message, system_prompt, max_tokens, temperature)
         usage = resp.usage
         print("\n--- usage ---")
         print(f"prompt: {usage.prompt_tokens}, completion: {usage.completion_tokens}, total: {usage.total_tokens}")
-    except Exception:
-        pass
+    except Exception as e:
+        print(f"Warning: Could not retrieve usage information: {e}", file=sys.stderr)
 
 def repl_loop(client, system_prompt, max_tokens, temperature):
     print("Entering interactive REPL. Type your message and press Enter.")
