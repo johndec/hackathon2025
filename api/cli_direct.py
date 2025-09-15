@@ -31,8 +31,14 @@ def single_request(client, user_message, system_prompt, max_tokens, temperature)
         max_tokens=max_tokens,
         temperature=temperature
     )
+    if not resp.choices:
+        print("Error: No choices returned in response.", file=sys.stderr)
+        return
     ai_text = resp.choices[0].message.content
-    print(ai_text)
+    if ai_text is not None:
+        print(ai_text)
+    else:
+        print("[No response received from AI]")
     try:
         usage = resp.usage
         print("\n--- usage ---")
@@ -80,10 +86,16 @@ def repl_loop(client, system_prompt, max_tokens, temperature):
                 max_tokens=max_tokens,
                 temperature=temperature
             )
+            if not resp.choices:
+                print("Error: No response choices returned by OpenAI.", file=sys.stderr)
+                continue
             ai_text = resp.choices[0].message.content
-            print(f"AI> {ai_text}\n")
-            # append assistant reply to conversation so context is preserved
-            messages.append({"role": "assistant", "content": ai_text})
+            if ai_text is None:
+                print("Warning: Received empty response from assistant; not adding to conversation history.\n", file=sys.stderr)
+            else:
+                print(f"AI> {ai_text}\n")
+                # append assistant reply to conversation so context is preserved
+                messages.append({"role": "assistant", "content": ai_text})
         except Exception as e:
             print(f"Error calling OpenAI: {e}", file=sys.stderr)
 
