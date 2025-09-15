@@ -4,6 +4,7 @@ import argparse
 import sys
 from dotenv import load_dotenv
 from openai import AzureOpenAI
+from prompt_utils import load_system_prompt
 
 load_dotenv()
 
@@ -112,7 +113,7 @@ def repl_loop(client, system_prompt, max_tokens, temperature):
 def main():
     p = argparse.ArgumentParser(description="Direct CLI to Azure OpenAI (uses AZ env vars)")
     p.add_argument("--message", "-m", help="Message to send (if omitted, REPL when running in a TTY)")
-    p.add_argument("--system", default="You are a helpful AI agent.", help="System prompt")
+    p.add_argument("--system", default=load_system_prompt("You are a helpful AI agent."), help="System prompt")
     p.add_argument("--max-tokens", type=int, default=500)
     p.add_argument("--temperature", type=float, default=0.7)
     args = p.parse_args()

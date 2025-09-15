@@ -4,6 +4,7 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 from openai import AzureOpenAI
 from dotenv import load_dotenv
+from prompt_utils import load_system_prompt
 
 # Load environment variables
 load_dotenv()
@@ -53,7 +54,7 @@ def chat():
             return jsonify({"error": "Missing 'message' in request body"}), 400
         
         user_message = data["message"]
-        system_prompt = data.get("system_prompt", "You are a helpful AI agent that answers questions when asked.")
+        system_prompt = data.get("system_prompt", load_system_prompt("You are a helpful AI agent that answers questions when asked."))
         max_tokens = data.get("max_tokens", 500)
         temperature = data.get("temperature", 0.7)
         
