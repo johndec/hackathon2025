@@ -1,0 +1,37 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "openAIServiceName": {
+      "value": "hackathon2025-openai-jz01"
+    },
+    "location": {
+      "value": "East US"
+    },
+    "skuName": {
+      "value": "S0"
+    },
+    "modelDeploymentName": {
+      "value": "jay-hackathon-deployment"
+    },
+    "modelName": {
+      "value": "gpt-4"
+    },
+    "modelVersion": {
+      "value": "turbo-2024-04-09"
+    },
+    "modelCapacity": {
+      "value": 10
+    },
+    "publicNetworkAccess": {
+      "value": "Enabled"
+    },
+    "tags": {
+      "value": {
+        "project": "hackathon2025",
+        "environment": "dev",
+        "createdBy": "bicep-template"
+      }
+    }
+  }
+}
