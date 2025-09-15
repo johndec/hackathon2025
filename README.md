@@ -145,6 +145,12 @@ az cognitiveservices account show --name "your-openai-service-name" --resource-g
    - Ensure you have Contributor role or higher
    - Verify OpenAI service access in your subscription
 
+4. **Error about unexpected keyword 'proxies'**
+   - If you get this error,
+   `Failed to generate response: Client.init() got an unexpected keyword argument 'proxies'"`
+   Then some of your pip components may need updating. Do this and then run again.
+   `pip install --upgrade openai httpx`
+   
 ### Cleanup
 To remove all deployed resources:
 ```powershell
