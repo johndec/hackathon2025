@@ -13,8 +13,17 @@ AZURE_OPENAI_DEPLOYMENT = os.getenv("AZURE_OPENAI_DEPLOYMENT")
 AZURE_OPENAI_API_VERSION = os.getenv("AZURE_OPENAI_API_VERSION")
 
 def get_client():
+    missing = []
     if not AZURE_OPENAI_API_KEY:
-        raise RuntimeError("AZURE_OPENAI_API_KEY not set")
+        missing.append("AZURE_OPENAI_API_KEY")
+    if not AZURE_OPENAI_ENDPOINT:
+        missing.append("AZURE_OPENAI_ENDPOINT")
+    if not AZURE_OPENAI_DEPLOYMENT:
+        missing.append("AZURE_OPENAI_DEPLOYMENT")
+    if not AZURE_OPENAI_API_VERSION:
+        missing.append("AZURE_OPENAI_API_VERSION")
+    if missing:
+        raise RuntimeError(f"Missing required environment variable(s): {', '.join(missing)}")
     return AzureOpenAI(
         api_key=AZURE_OPENAI_API_KEY,
         api_version=AZURE_OPENAI_API_VERSION,
